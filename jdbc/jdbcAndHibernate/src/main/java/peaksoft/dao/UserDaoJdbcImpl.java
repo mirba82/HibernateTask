@@ -20,12 +20,12 @@ public class UserDaoJdbcImpl implements UserDao {
                 "id SERIAL," +
                 "name VARCHAR (250) NOT NULL," +
                 "lastName VARCHAR (250) NOT NULL," +
-                "age BYTE NOT NULL,+" +
-                "PRIMARY KEY (id));";
+                "age SMALLINT);";
+
         try (Connection connect = Util.connection()) {
-            PreparedStatement statement = connect.prepareStatement(Create_SQL);
-            statement.executeUpdate();
-            System.out.println("users ийгиликтуу тузулду. Азаматсыз!");
+           Statement statement = connect.createStatement();
+            statement.executeUpdate(Create_SQL);
+            System.out.println("users 'table' ийгиликтуу тузулду. Азаматсыз!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -43,12 +43,11 @@ public class UserDaoJdbcImpl implements UserDao {
     }
     @Override
     public void saveUser(String name, String lastName, byte age) {
-
         try(Connection connnect = Util.connection()) {
-            PreparedStatement statement = connnect.prepareStatement("INSERT INTO users"+"(name, lastName, age) VALUES (?,?,?);");
+            PreparedStatement statement = connnect.prepareStatement("INSERT INTO users(name, lastName, age) VALUES (?,?,?);");
             statement.setString(1,name);
             statement.setString(2,lastName);
-            statement.setByte(3,age);
+            statement.setInt(3,age);
             statement.executeUpdate();
             System.out.println(name +" "+" ДатаБаза га кошулуу.");
         }catch (SQLException e){

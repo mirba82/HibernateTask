@@ -12,10 +12,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
-
         UserServiceImpl userService = new UserServiceImpl();
-        userService.dropUsersTable();
-        userService.createUsersTable();
+
+       userService.createUsersTable();
 
         User user1 = new User("venere","adybaeva",(byte)23);
         userService.saveUser(user1.getName(),user1.getLastName(),user1.getAge());
