@@ -1,6 +1,7 @@
 package peaksoft;
 
 import peaksoft.dao.UserDao;
+import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.dao.UserDaoJdbcImpl;
 import peaksoft.model.User;
 import peaksoft.service.UserServiceImpl;
@@ -16,16 +17,16 @@ public class Main {
 
        userService.createUsersTable();
 
-        User user1 = new User("venere","adybaeva",(byte)23);
+        User user1 = new User("Venera","Adybaeva",(byte)23);
         userService.saveUser(user1.getName(),user1.getLastName(),user1.getAge());
 
-        User user2 =new User("kubanych","bakitay",(byte)29);
+        User user2 =new User("Kubanych","Bakitay",(byte)29);
         userService.saveUser(user2.getName(),user2.getLastName(),user2.getAge());
 
-        User user3 = new User("mirbe","abylov",(byte)30);
+        User user3 = new User("Mirbe","Abylov",(byte)30);
         userService.saveUser(user3.getName(),user3.getLastName(),user3.getAge());
 
-        User user4 = new User("saparbek","oskonbaev",(byte)4);
+        User user4 = new User("Saparbek","Oskonbaev",(byte)4);
         userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
 
         User user5 = new User("Kira","Kirova",(byte)35);
@@ -35,10 +36,12 @@ public class Main {
         for(User user: userList){
             System.out.println(user);
         }
-        userService.cleanUsersTable();
-        userService.dropUsersTable();
+
+//        userService.cleanUsersTable();
+//        userService.dropUsersTable();
 
         Util.connection().close();
+
 
     }
 
